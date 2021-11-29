@@ -1,9 +1,10 @@
 import React from 'react';
+import cl from './Card.module.scss';
 
-const Card = ({ name, price, img }) => {
+const Card = ({ name, price, img, onClick }) => {
   return (
-    <div className={'card'}>
-      <div className={'favorite'}>
+    <div className={cl.card}>
+      <div className={cl.favorite}>
         <img src="/img/unliked.svg" alt="heart-unliked" />
       </div>
       <img width={133} height={112} src={img} alt="Sneaker" />
@@ -13,7 +14,7 @@ const Card = ({ name, price, img }) => {
           <span>Цена: </span>
           <b>{price} руб.</b>
         </div>
-        <button className={'button'}>
+        <button className={'button'} onClick={onClick}>
           <img width={11} height={11} src="/img/plus.svg" alt="plus" />
         </button>
       </div>
