@@ -1,10 +1,17 @@
 import React from 'react';
 import cl from './Card.module.scss';
 
-const Card = ({ name, price, img, onClick }) => {
+const Card = ({ name, price, img, onPlus, onFavorite }) => {
+  const [isAdded, setIsAdded] = React.useState(false);
+
+  const onClickPlus = () => {
+    onPlus({ name, price, img });
+    setIsAdded(!isAdded);
+  };
+
   return (
     <div className={cl.card}>
-      <div className={cl.favorite}>
+      <div className={cl.favorite} onClick={onFavorite}>
         <img src="/img/unliked.svg" alt="heart-unliked" />
       </div>
       <img width={133} height={112} src={img} alt="Sneaker" />
@@ -14,9 +21,13 @@ const Card = ({ name, price, img, onClick }) => {
           <span>Цена: </span>
           <b>{price} руб.</b>
         </div>
-        <button className={'button'} onClick={onClick}>
-          <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-        </button>
+
+        <img
+          className={cl.plus}
+          onClick={onClickPlus}
+          src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
+          alt="plus"
+        />
       </div>
     </div>
   );
